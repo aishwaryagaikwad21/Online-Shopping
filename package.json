@@ -4,8 +4,11 @@
   "description": "shopping cart",
   "main": "app.js",
   "scripts": {
+    "client-install":"npm install --prefix client",
     "start": "node app.js",
-    "server": "nodemon app.js"
+    "server": "nodemon app.js",
+    "client":"npm start --prefix client/shopping-cart",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
