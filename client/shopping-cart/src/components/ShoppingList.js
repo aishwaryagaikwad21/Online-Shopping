@@ -3,18 +3,18 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v1 as uuid } from "uuid";
 
-class ShoppingList extends Component {
-    state = {
-        items: [
-            { id: uuid(), name: 'Eggs' },
-            { id: uuid(), name: 'bread' },
-            { id: uuid(), name: 'milk' },
-            { id: uuid(), name: 'water' }
-        ]
-    }
+import {connect} from 'react-redux';
+import {getItems} from '../actions/itemAction';
+import PropTypes from 'prop-types'
 
+class ShoppingList extends Component {
+
+    componentDidMount(){
+        this.props.getItems();
+    }
     render() {
-        const { items } = this.state;
+        
+        const { items } = this.props.item;
         return(
             <Container>
                 <Button color="dark" style={{ marginTop: '2rem' }} onClick={() => {
@@ -51,4 +51,12 @@ class ShoppingList extends Component {
     }
 }
 
-export default ShoppingList;
+ShoppingList.propTypes = {
+    getItems:PropTypes.func.isRequired,
+    item:PropTypes.object.isRequired //represents state
+}
+
+const mapStateToProps = (state)=>({
+    item:state.item
+})
+export default connect(mapStateToProps,{getItems})(ShoppingList);
