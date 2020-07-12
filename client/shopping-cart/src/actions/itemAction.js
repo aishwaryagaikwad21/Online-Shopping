@@ -7,3 +7,17 @@ export const getItems = ()=>{
         
     }
 }
+
+export const deleteItems = (id)=>{
+    return{
+        type:DELETE_ITEMS, //this is action
+        payload:id
+    }
+}
+
+export const addItem = (item)=>{
+    return{
+        type:ADD_ITEMS, //this is action
+        payload:item
+    }
+}
