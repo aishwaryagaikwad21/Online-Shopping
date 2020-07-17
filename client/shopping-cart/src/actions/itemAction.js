@@ -12,6 +12,14 @@ export const getItems = () => dispatch => {
         }))
 }
 
+export const addItem = item => dispatch=> {
+    axio.post('/',item).then(res => dispatch({
+        type:ADD_ITEMS,
+        payload:res.data
+    }))
+    
+}
+
 export const deleteItems = (id)=>{
     return{
         type:DELETE_ITEMS, //this is action
@@ -19,12 +27,6 @@ export const deleteItems = (id)=>{
     }
 }
 
-export const addItem = (item)=>{
-    return{
-        type:ADD_ITEMS, //this is action
-        payload:item
-    }
-}
 
 export const setItemsLoading = ()=>{
     return{
